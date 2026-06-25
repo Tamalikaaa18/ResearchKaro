@@ -1,0 +1,6 @@
+{
+  "name": "ResearchIndia",
+  "description": "A high-converting landing page for ResearchIndia, helping students find research opportunities.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
