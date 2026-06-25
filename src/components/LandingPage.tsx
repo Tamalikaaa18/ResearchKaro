@@ -22,7 +22,7 @@ export default function LandingPage() {
   const [sortDeadline, setSortDeadline] = useState('asc');
 
   useEffect(() => {
-    fetch('/opportunities.csv')
+    fetch('opportunities.csv')
       .then(res => res.text())
       .then(csvText => {
         Papa.parse(csvText, {
