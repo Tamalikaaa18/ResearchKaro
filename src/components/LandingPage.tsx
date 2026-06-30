@@ -12,6 +12,19 @@ interface Opportunity {
   link: string;
 }
 
+// Helper function to safely parse Indian date format (DD.MM.YY or DD.MM.YYYY)
+const parseIndianDate = (dateStr: string): Date => {
+  if (!dateStr) return new Date();
+
+  if (dateStr.includes('.')) {
+    const [day, month, year] = dateStr.split('.');
+    const fullYear = year.length === 2 ? `20${year}` : year;
+    return new Date(Number(fullYear), Number(month) - 1, Number(day));
+  }
+
+  return new Date(dateStr);
+};
+
 export default function LandingPage() {
   const [opportunities, setOpportunities] = useState<Opportunity[]>([]);
   const [institutions, setInstitutions] = useState<string[]>([]);
@@ -45,8 +58,8 @@ export default function LandingPage() {
     .filter(opp => (filterInst ? opp.institution === filterInst : true))
     .filter(opp => (filterDept ? opp.department === filterDept : true))
     .sort((a, b) => {
-      const dateA = new Date(a.deadline).getTime();
-      const dateB = new Date(b.deadline).getTime();
+      const dateA = parseIndianDate(a.deadline).getTime();
+      const dateB = parseIndianDate(b.deadline).getTime();
       return sortDeadline === 'asc' ? dateA - dateB : dateB - dateA;
     });
 
@@ -185,8 +198,14 @@ export default function LandingPage() {
 
           <div className="space-y-4">
             {filteredOpps.length > 0 ? filteredOpps.map((opp) => {
-              // Simple Google Calendar Event URL Generation
-              const start = opp.deadline.replace(/-/g, '');
+              const parsedDate = parseIndianDate(opp.deadline);
+
+              // Correctly format the date string to YYYYMMDD for Google Calendar
+              const yyyy = parsedDate.getFullYear();
+              const mm = String(parsedDate.getMonth() + 1).padStart(2, '0');
+              const dd = String(parsedDate.getDate()).padStart(2, '0');
+              const start = `${yyyy}${mm}${dd}`;
+
               const calUrl = new URL('https://calendar.google.com/calendar/render');
               calUrl.searchParams.append('action', 'TEMPLATE');
               calUrl.searchParams.append('text', `Deadline: ${opp.title} at ${opp.institution}`);
@@ -202,7 +221,7 @@ export default function LandingPage() {
 
                   <div className="flex flex-col sm:flex-row items-center gap-3">
                     <div className="bg-red-50 text-red-700 px-4 py-2 rounded-lg text-sm font-semibold w-full sm:w-auto text-center whitespace-nowrap">
-                      Deadline: {new Date(opp.deadline).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                      Deadline: {parsedDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                     </div>
                     <div className="flex w-full sm:w-auto gap-2">
                       <a
