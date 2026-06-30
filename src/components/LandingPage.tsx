@@ -71,7 +71,7 @@ export default function LandingPage() {
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center gap-2">
               <BookOpen className="h-8 w-8 text-blue-600" />
-              <span className="text-2xl font-bold text-slate-900 tracking-tight">Research<span className="text-blue-600">Karo</span></span>
+              <span className="text-2xl font-bold text-slate-900 tracking-tight">Research<span className="text-blue-600">KaroIndia</span></span>
             </div>
             <div className="hidden md:flex space-x-8">
               <a href="#how-it-works" className="text-slate-600 hover:text-blue-600 transition-colors font-medium">How it works</a>
