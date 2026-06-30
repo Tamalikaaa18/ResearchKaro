@@ -183,7 +183,7 @@ export default function LandingPage() {
             </div>
           </section>
 
-          {/* Core Mini-Board Section (Shows max 5) */}
+          {/* Core Mini-Board Section (Shows max 5 with layout fixes applied) */}
           <section id="opportunities" className="py-20 bg-slate-50 border-t border-slate-100">
             <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
@@ -207,18 +207,18 @@ export default function LandingPage() {
                   calUrl.searchParams.append('dates', `${start}T000000Z/${start}T235959Z`);
 
                   return (
-                    <div key={opp.id} className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div key={opp.id} className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-6 transition-all hover:shadow-md">
                       <div>
                         <h3 className="text-xl font-bold text-slate-900 mb-1">{opp.title}</h3>
                         <p className="text-slate-600 font-medium">{opp.institution} &bull; <span className="text-slate-500 font-normal">{opp.department}</span></p>
                       </div>
                       <div className="flex flex-col sm:flex-row items-center gap-3">
-                        <div className="bg-red-50 text-red-700 px-4 py-2 rounded-lg text-sm font-semibold w-full sm:w-auto text-center">
+                        <div className="bg-red-50 text-red-700 px-4 py-2 rounded-lg text-sm font-semibold w-full sm:w-auto text-center whitespace-nowrap">
                           Deadline: {parsedDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                         </div>
                         <div className="flex w-full sm:w-auto gap-2">
-                          <a href={calUrl.toString()} target="_blank" rel="noopener noreferrer" className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors"><CalendarPlus className="w-4 h-4" /> Add to Cal</a>
-                          <a href={opp.link} target="_blank" rel="noopener noreferrer" className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">Apply <ExternalLink className="w-4 h-4" /></a>
+                          <a href={calUrl.toString()} target="_blank" rel="noopener noreferrer" className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap"><CalendarPlus className="w-4 h-4" /> Add to Cal</a>
+                          <a href={opp.link} target="_blank" rel="noopener noreferrer" className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap">Apply <ExternalLink className="w-4 h-4" /></a>
                         </div>
                       </div>
                     </div>
@@ -375,7 +375,7 @@ export default function LandingPage() {
                       </div>
                       <div className="flex w-full sm:w-auto gap-2">
                         <a href={calUrl.toString()} target="_blank" rel="noopener noreferrer" className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap"><CalendarPlus className="w-4 h-4" /> Add to Cal</a>
-                        <a href={opp.link} target="_blank" rel="noopener noreferrer" className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">Apply <ExternalLink className="w-4 h-4" /></a>
+                        <a href={opp.link} target="_blank" rel="noopener noreferrer" className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap">Apply <ExternalLink className="w-4 h-4" /></a>
                       </div>
                     </div>
                   </div>
